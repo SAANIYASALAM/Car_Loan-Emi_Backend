@@ -16,7 +16,7 @@ namespace CAR_LOAN_EMI.Data
         public DbSet<EmiPayment> EmiPayments { get; set; } = null!;
         public DbSet<LoanRule> LoanRules { get; set; } = null!;
         public DbSet<KycDocument> KycDocuments { get; set; } = null!;
-        public DbSet<ContactMessage> ContactMessages { get; set; } = null!;;
+        public DbSet<ContactMessage> ContactMessages { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
