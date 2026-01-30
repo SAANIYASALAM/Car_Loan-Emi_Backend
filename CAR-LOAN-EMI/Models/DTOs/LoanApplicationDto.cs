@@ -32,5 +32,8 @@ namespace CAR_LOAN_EMI.Models.DTOs
         [Required]
         [Range(1, 15)]
         public int Tenure { get; set; }
+
+        [Range(18, 100)]
+        public int UserAge { get; set; } = 18;
     }
 }
