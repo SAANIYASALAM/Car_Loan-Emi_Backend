@@ -1,0 +1,6 @@
+@CAR_LOAN_EMI_HostAddress = http://localhost:5004
+
+GET {{CAR_LOAN_EMI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
