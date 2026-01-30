@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CAR_LOAN_EMI.Models.Enums;
 
 namespace CAR_LOAN_EMI.Models.Entities
 {
@@ -7,14 +8,14 @@ namespace CAR_LOAN_EMI.Models.Entities
     public class KycDocument
     {
         [Key]
-        public int DocumentId { get; set; }
+        public int KycDocumentId { get; set; }
 
         [Required]
         public int UserId { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string DocumentType { get; set; } = string.Empty;
+        public string DocumentType { get; set; } = string.Empty; // Aadhar, PAN, Address Proof
 
         [Required]
         [StringLength(100)]
@@ -22,14 +23,17 @@ namespace CAR_LOAN_EMI.Models.Entities
 
         [Required]
         [StringLength(500)]
-        public string DocumentPath { get; set; } = string.Empty;
+        public string FilePath { get; set; } = string.Empty;
 
-        [StringLength(50)]
-        public string VerificationStatus { get; set; } = "Pending";
+        [StringLength(500)]
+        public string? FileUrl { get; set; }
 
         public DateTime UploadedAt { get; set; } = DateTime.UtcNow;
 
-        public DateTime? VerifiedAt { get; set; }
+        public KycStatus Status { get; set; } = KycStatus.Pending;
+
+        [StringLength(500)]
+        public string? RejectionReason { get; set; }
 
         // Navigation properties
         [ForeignKey("UserId")]

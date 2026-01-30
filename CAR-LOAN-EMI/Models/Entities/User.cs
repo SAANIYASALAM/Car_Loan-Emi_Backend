@@ -45,6 +45,9 @@ namespace CAR_LOAN_EMI.Models.Entities
 
         public bool IsActive { get; set; } = true;
 
+        [StringLength(20)]
+        public string Role { get; set; } = "User"; // "User" or "Admin"
+
         // Navigation properties
         public virtual ICollection<Loan> Loans { get; set; } = new List<Loan>();
         public virtual ICollection<KycDocument> KycDocuments { get; set; } = new List<KycDocument>();
