@@ -55,6 +55,13 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// Configure Authorization
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
+});
+
 // Register Dependency Injection - Singleton Services
 builder.Services.AddSingleton(new JwtHelper(jwtSecret, jwtExpiryMinutes));
 builder.Services.AddSingleton<LoanRulesEngine>();
@@ -64,12 +71,21 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<IEmiService, EmiService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IKycService, KycService>();
+builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
+builder.Services.AddScoped<IUserDashboardService, UserDashboardService>();
+builder.Services.AddScoped<IStatementService, StatementService>();
+builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IPaymentCalendarService, PaymentCalendarService>();
 
 // Register Dependency Injection - Scoped Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ILoanRepository, LoanRepository>();
 builder.Services.AddScoped<IEmiRepository, EmiRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IKycRepository, KycRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 // Configure Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
